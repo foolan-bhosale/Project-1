@@ -56,8 +56,7 @@ class Quiz {
     }
 
     // clickedAnswer(answer) {
-    //     // quizContainer.style.display = 'none';
-    //     // feedbackContainer.style.display = 'block';
+    //
     //     if (this.getQuestionIndex().correctAnswer(answer)) {
     //         // console.log(this.score++);
     //         this.score++;
@@ -114,3 +113,21 @@ let questions = [
         'HTML Tag'
     )
 ];
+
+function displayGame() {
+    if (quiz.isGameFinished()) {
+        // alert('Game is over. Do you want to start again?');
+        resetGame();
+    } else {
+        let element = document.getElementById('question');
+        element.innerHTML = quiz.getQuestionIndex().string;
+
+        //show choices
+        let choices = quiz.getQuestionIndex().choices;
+        for (let i = 0; i < choices.length; i++) {
+            let element = document.getElementById('choice' + i);
+            element.innerHTML = choices[i];
+            guess('btn' + i, choices[i]);
+        }
+    }
+}

@@ -114,9 +114,10 @@ let questions = [
     )
 ];
 
+
 let quiz = new Quiz(questions);
 
-unction displayQuestion() {
+Function displayQuestion() {
     // if (quiz.isGameFinished()) {
     //     alert('game is finished');
     // } else {
@@ -146,3 +147,32 @@ unction displayQuestion() {
     list.innerHTML = '';
     list.appendChild(listOfAnswers);
 }
+
+
+
+function resetGame() {
+    if (quiz.isGameFinished()) {
+        quiz.questionIndex = 0;
+        quiz.score = 0;
+        scoreContainer.innerHTML = '';
+        quizContainer.style.display = 'block';
+        feedbackContainer.style.display = 'none';
+        feedbackContainer.innerHTML = '';
+
+        initGame();
+    }
+}
+
+list.addEventListener('click', function(event) {
+    let clickedAnswer = event.target.value;
+
+    console.log(event.target.value);
+    if (quiz.getNextQuestion().correctAnswer(clickedAnswer)) {
+        let currentScore = quiz.increaseScore();
+        scoreContainer.innerHTML = `Score : ${currentScore}`;
+
+        showAnswer.innerHTML = `correct Answer`;
+    } else {
+        showAnswer.innerHTML = `the correct answer is : ${quiz.getNextQuestion().answer}`;
+    }
+});

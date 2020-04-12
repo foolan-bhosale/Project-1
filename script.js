@@ -114,20 +114,35 @@ let questions = [
     )
 ];
 
-function displayGame() {
-    if (quiz.isGameFinished()) {
-        // alert('Game is over. Do you want to start again?');
-        resetGame();
-    } else {
-        let element = document.getElementById('question');
-        element.innerHTML = quiz.getQuestionIndex().string;
+let quiz = new Quiz(questions);
 
-        //show choices
-        let choices = quiz.getQuestionIndex().choices;
-        for (let i = 0; i < choices.length; i++) {
-            let element = document.getElementById('choice' + i);
-            element.innerHTML = choices[i];
-            guess('btn' + i, choices[i]);
-        }
+unction displayQuestion() {
+    // if (quiz.isGameFinished()) {
+    //     alert('game is finished');
+    // } else {
+    let question = quiz.getNextQuestion();
+    console.log(question);
+    // quizContainer.innerHTML = `<h2>Question# ${quiz.questionIndex + 1}</h2><p>${question.string}</p>`;
+    // paragraph.textContent = `${questions.string}`;
+    // paragraph.innerHTML = `<p>${question.string}</p>`;
+    // console.log(question.string);
+    heading.innerHTML = `<h2>Question# ${quiz.questionIndex + 1}</h2>`;
+    paragraph.innerHTML = `<p>${question.string}</p>`;
+    let listOfAnswers = document.createElement('ul');
+    for (let i = 0; i < question.choices.length; i++) {
+        console.log(question.choices[i]);
+        let radioList = document.createElement('li');
+        let label = document.createElement('label');
+        let input = document.createElement('input');
+        input.setAttribute('type', 'radio');
+        input.setAttribute('value', question.choices[i]);
+        input.setAttribute('name', 'option');
+        label.appendChild(input);
+        label.innerHTML += question.choices[i];
+        radioList.appendChild(label);
+        listOfAnswers.appendChild(radioList);
+        // let li = question.choices[i];
     }
+    list.innerHTML = '';
+    list.appendChild(listOfAnswers);
 }

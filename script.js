@@ -114,10 +114,67 @@ let questions = [
     )
 ];
 
-
 let quiz = new Quiz(questions);
 
-Function displayQuestion() {
+// Function displayQuestion() {
+//     // if (quiz.isGameFinished()) {
+//     //     alert('game is finished');
+//     // } else {
+//     let question = quiz.getNextQuestion();
+//     console.log(question);
+//     // quizContainer.innerHTML = `<h2>Question# ${quiz.questionIndex + 1}</h2><p>${question.string}</p>`;
+//     // paragraph.textContent = `${questions.string}`;
+//     // paragraph.innerHTML = `<p>${question.string}</p>`;
+//     // console.log(question.string);
+//     heading.innerHTML = `<h2>Question# ${quiz.questionIndex + 1}</h2>`;
+//     paragraph.innerHTML = `<p>${question.string}</p>`;
+//     let listOfAnswers = document.createElement('ul');
+//     for (let i = 0; i < question.choices.length; i++) {
+//         console.log(question.choices[i]);
+//         let radioList = document.createElement('li');
+//         let label = document.createElement('label');
+//         let input = document.createElement('input');
+//         input.setAttribute('type', 'radio');
+//         input.setAttribute('value', question.choices[i]);
+//         input.setAttribute('name', 'option');
+//         label.appendChild(input);
+//         label.innerHTML += question.choices[i];
+//         radioList.appendChild(label);
+//         listOfAnswers.appendChild(radioList);
+//         // let li = question.choices[i];
+//     }
+//     list.innerHTML = '';
+//     list.appendChild(listOfAnswers);
+// }
+
+// function resetGame() {
+//     if (quiz.isGameFinished()) {
+//         quiz.questionIndex = 0;
+//         quiz.score = 0;
+//         scoreContainer.innerHTML = '';
+//         quizContainer.style.display = 'block';
+//         feedbackContainer.style.display = 'none';
+//         feedbackContainer.innerHTML = '';
+
+//         initGame();
+//     }
+// }
+
+// list.addEventListener('click', function(event) {
+//     let clickedAnswer = event.target.value;
+
+//     console.log(event.target.value);
+//     if (quiz.getNextQuestion().correctAnswer(clickedAnswer)) {
+//         let currentScore = quiz.increaseScore();
+//         scoreContainer.innerHTML = `Score : ${currentScore}`;
+
+//         showAnswer.innerHTML = `correct Answer`;
+//     } else {
+//         showAnswer.innerHTML = `the correct answer is : ${quiz.getNextQuestion().answer}`;
+//     }
+// });
+
+function displayQuestion() {
     // if (quiz.isGameFinished()) {
     //     alert('game is finished');
     // } else {
@@ -148,20 +205,19 @@ Function displayQuestion() {
     list.appendChild(listOfAnswers);
 }
 
-
-
-function resetGame() {
+nextButton.addEventListener('click', function(e) {
+    let nextQuestion = quiz.getQuestionIndex();
+    showAnswer.innerHTML = '';
     if (quiz.isGameFinished()) {
-        quiz.questionIndex = 0;
-        quiz.score = 0;
-        scoreContainer.innerHTML = '';
-        quizContainer.style.display = 'block';
-        feedbackContainer.style.display = 'none';
-        feedbackContainer.innerHTML = '';
-
-        initGame();
+        // alert('game is finished');
+        showAnswer.innerHTML = `<h1>Game is Over</h1>`;
+        reset.style.display = 'block';
+        // resetGame();
+        nextButton.style.display = 'none';
+    } else {
+        displayQuestion();
     }
-}
+});
 
 list.addEventListener('click', function(event) {
     let clickedAnswer = event.target.value;
@@ -176,3 +232,12 @@ list.addEventListener('click', function(event) {
         showAnswer.innerHTML = `the correct answer is : ${quiz.getNextQuestion().answer}`;
     }
 });
+
+// function resetGame() {
+//     if (quiz.isGameFinished()) {
+//         quiz.questionIndex = 0;
+//         quiz.score = 0;
+//         scoreContainer.innerHTML = '';
+//         displayQuestion();
+//     }
+// }

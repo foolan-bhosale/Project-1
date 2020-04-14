@@ -185,15 +185,9 @@ let quiz = new Quiz(questions);
 // display quiz function;
 
 function displayQuestion() {
-    // if (quiz.isGameFinished()) {
-    //     alert('game is finished');
-    // } else {
     let question = quiz.getNextQuestion();
     console.log(question);
-    // quizContainer.innerHTML = `<h2>Question# ${quiz.questionIndex + 1}</h2><p>${question.string}</p>`;
-    // paragraph.textContent = `${questions.string}`;
-    // paragraph.innerHTML = `<p>${question.string}</p>`;
-    // console.log(question.string);
+
     heading.innerHTML = `<h2>Question ${quiz.questionIndex + 1}</h2>`;
     paragraph.innerHTML = `<p>${question.string}</p>`;
 
@@ -261,11 +255,6 @@ nextButton.addEventListener('click', function(e) {
     showAnswer.innerHTML = '';
     answerContainer.style.display = 'none';
     if (quiz.isGameFinished()) {
-        // alert('game is finished');
-        // resetContainer.innerHTML = `<h1>Game is Over</h1>`;
-        // resetContainer.style.display = 'block';
-        // resetButton.style.display = 'block';
-        // console.log('resetButton');
         resetGame();
 
         nextButton.style.display = 'none';
@@ -273,32 +262,6 @@ nextButton.addEventListener('click', function(e) {
         displayQuestion();
     }
 });
-
-// targeting the list elements and add event listener to it .
-// list.addEventListener('click', function(event) {
-//     let clickedAnswer = event.target.value;
-
-//     console.log(event.target.value);
-
-//     // checking for answer correct or incorrect through if/else condition
-//     if (quiz.getNextQuestion().correctAnswer(clickedAnswer)) {
-//         // increasing score if answer is correct by calling increaseScore() function
-//         let currentScore = quiz.increaseScore();
-
-//         //
-//         scoreContainer.innerHTML = `Score: ${currentScore}`;
-
-//         //css style
-//         answerContainer.style.display = 'block';
-//         showAnswer.innerHTML = `Good one! You are correct.`;
-//     } else {
-//         //css style
-//         answerContainer.style.display = 'block';
-
-//         //if answer is wrong display answer of current question .
-//         showAnswer.innerHTML = `Oops..!<br>The Correct Answer is: <strong>${quiz.getNextQuestion().answer}</strong>`;
-//     }
-// });
 
 // targeting the reset button and adding event listener to it.
 resetButton.addEventListener('click', resetGame);
@@ -332,7 +295,7 @@ function startTimer(duration, timerContainer) {
         minutes = parseInt(timer / 60);
         seconds = parseInt(timer % 60);
 
-        //formatting time and minutes in  00:00 format
+        //formatting time and minutes in  00:00 format, checking if/else condition
 
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;

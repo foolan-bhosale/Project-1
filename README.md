@@ -27,6 +27,11 @@ Self scoring Trivia quiz application using Html, Css and Javascript.
  - Install [Visual Studio Code](https://code.visualstudio.com/Download) or any choice of your code editor like atom or bracket.
  - Start up the server using live server extension if you are using VS Code and navigate through the indicated port number.
 
+
+ **Unsolved Problem**
+
+   It's not responsive design ready yet but I looking forward to taking care of that in future.
+
  **Contribution**
    - Question and answers source.
      - https://www.examtiger.com/.

@@ -53,6 +53,7 @@ function startQuiz() {
 // class constructors
 class Quiz {
     constructor(questions) {
+        // console.log(questions);
         this.score = 0;
         this.questions = questions;
         this.questionIndex = 0;
@@ -209,8 +210,11 @@ function displayQuestion() {
         input.setAttribute('type', 'radio');
         input.setAttribute('value', question.choices[i]);
         input.setAttribute('name', 'option');
+
+        //
         label.appendChild(input);
         label.innerHTML += question.choices[i];
+        // console.log(label);
         radioList.appendChild(label);
         listOfAnswers.appendChild(radioList);
 
@@ -290,11 +294,12 @@ function resetGame() {
     }
 }
 
-//This function is to start the timer for the total duration
+//This function is to start the timer for the total duration // this code I followed  from stackoverflow source code example
 function startTimer(duration, timerContainer) {
     timerContainer.style.display = 'block';
     let timer = duration;
     let minutes, seconds;
+
     setInterval(function() {
         //added parseInt javascript method to timer
         minutes = parseInt(timer / 60);
